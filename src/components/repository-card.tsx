@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useEffect, useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { ExternalLink, GitFork, Loader2, Sparkles, Star } from 'lucide-react';
 
 import type { GithubRepo } from '@/lib/github-types';
@@ -50,7 +50,7 @@ function SummaryButton() {
 }
 
 export function RepositoryCard({ repo, className, style }: { repo: GithubRepo, className?: string; style?: React.CSSProperties }) {
-  const [state, formAction] = useFormState(getSummaryAction, { summary: '', error: '' });
+  const [state, formAction] = useActionState(getSummaryAction, { summary: '', error: '' });
   const { toast } = useToast();
   
   useEffect(() => {
